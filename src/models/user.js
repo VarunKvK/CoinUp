@@ -5,9 +5,9 @@ try {
   User = model("User");
 } catch (e) {
   const UserSchema = new Schema({
-    name: { type: String },
-    email: { type: String },
-    image: { type: String },
+    name: String ,
+    email: String ,
+    image: String ,
     email_verified: Date 
   });
   User = model("User", UserSchema);

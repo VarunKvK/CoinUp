@@ -9,13 +9,17 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 export default async function Login() {
   const SignInOptions = [
     {
+      id: 1,
       icon: faGoogle,
       urlVariable: "google",
+      signinName: "Google",
     },
-    {
-      icon: faGithub,
-      urlVariable: "github",
-    },
+    // {
+    //   id:2,
+    //   icon: faGithub,
+    //   urlVariable: "github",
+    //   signinName:"Github"
+    // },
   ];
   const session = await getServerSession(authOptions);
   if (session) {
@@ -26,6 +30,9 @@ export default async function Login() {
       <div className="mt-10">
         <div className="">
           <h1 className="text-4xl font-regular text-center">Lets improve!</h1>
+          <p className="text-lg mt-2 text-gray-300 font-regular text-center">
+            We control your expenses
+          </p>
         </div>
         <div className="mt-20">
           <form action="">
@@ -41,18 +48,19 @@ export default async function Login() {
                 placeholder="joedoe@gmail.com"
               />
             </div>
-            <button className="w-full bg-black text-white rounded-xl px-10 py-2 mb-4">
+            <button className="w-full bg-black text-white rounded-xl px-10 py-4 mb-4">
               LogIn
             </button>
           </form>
           <p className="text-center text-gray-400 text-lg mb-4">Or</p>
           <div className="grid grid-cols-2 gap-4">
-
             {SignInOptions.map((option) => {
               return (
                 <SignInButtons
+                  key={option.id}
                   icon={option.icon}
                   urlVariable={option.urlVariable}
+                  signinName={option.signinName}
                 />
               );
             })}

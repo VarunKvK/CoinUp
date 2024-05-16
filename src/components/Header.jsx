@@ -1,8 +1,8 @@
-
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import Logout from "./buttons/LogOut";
+import LoginNav from "./LoginNavigation";
 
 export default async function Header() {
   const session = await getServerSession(authOptions);
@@ -29,9 +29,7 @@ export default async function Header() {
             <Logout/>
           </nav>
         ) : (
-          <nav className="text-sm flex gap-12 items-center bg-black text-white rounded-xl px-6 py-2">
-            <Link href="/login">Login</Link>
-          </nav>
+          <LoginNav/>
         )}
       </div>
     </header>
