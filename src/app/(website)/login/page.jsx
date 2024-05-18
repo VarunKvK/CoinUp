@@ -5,26 +5,29 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import SetUsername from "@/app/actions/GetUsername";
 
 export default async function Login() {
   const SignInOptions = [
     {
       id: 1,
       icon: faGoogle,
-      urlVariable: "google",
+      urlVariable: "'google'",
       signinName: "Google",
     },
     // {
     //   id:2,
     //   icon: faGithub,
-    //   urlVariable: "github",
+    //   urlVariable: "'github'",
     //   signinName:"Github"
     // },
   ];
   const session = await getServerSession(authOptions);
   if (session) {
+    await SetUsername(session)
     redirect("/");
   }
+
   return (
     <main className="max-w-auto mx-auto flex justify-center items-center">
       <div className="mt-10">
@@ -53,7 +56,8 @@ export default async function Login() {
             </button>
           </form>
           <p className="text-center text-gray-400 text-lg mb-4">Or</p>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
+          {/* <div className="grid grid-cols-2 gap-4"> */}
             {SignInOptions.map((option) => {
               return (
                 <SignInButtons

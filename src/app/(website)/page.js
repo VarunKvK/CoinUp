@@ -33,18 +33,18 @@ export default function Home() {
   ];
   return (
     <main className="max-w-8xl mx-auto p-6">
-      <div className="h-[31vh] flex items-center text-xl font-semibold text-gray-300">
-        <div className="w-[50%]">
+      <div className="h-[31vh] grid md:flex items-center text-xl font-semibold text-gray-300">
+        <div className="w-full md:w-[50%]">
           <span className="">
             Be <span className="italic">Disciplined</span>. Live Life.
           </span>
         </div>
-        <div className="w-[50%] text-right">
+        <div className="w-full md:w-[50%] text-right">
           <span className="">Ready?</span>
         </div>
       </div>
       {/* The button navigation group after Logging-In*/}
-      <div className="h-[50vh] flex gap-4">
+      <div className="h-[50vh] grid grid-rows-2 grid-cols-2 md:flex gap-4">
         {linkInfo.map((info) => {
           return (
             <ButtonNav
