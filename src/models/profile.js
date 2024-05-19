@@ -7,7 +7,7 @@ try{
     const ProfileSchema=new Schema({
         uri:{type:String, required:true,min:1,unique:true},
         owner:{type:String, required:true}
-    })
+    },{timestamp:true})
     Profile=model("Profile",ProfileSchema)
 }
 

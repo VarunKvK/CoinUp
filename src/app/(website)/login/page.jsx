@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import SetUsername from "@/app/actions/GetUsername";
+import SetUsername from "@/actions/GetUsername";
 
 export default async function Login() {
   const SignInOptions = [
@@ -15,12 +15,12 @@ export default async function Login() {
       urlVariable: "'google'",
       signinName: "Google",
     },
-    // {
-    //   id:2,
-    //   icon: faGithub,
-    //   urlVariable: "'github'",
-    //   signinName:"Github"
-    // },
+    {
+      id:2,
+      icon: faGithub,
+      urlVariable: "'github'",
+      signinName:"Github"
+    },
   ];
   const session = await getServerSession(authOptions);
   if (session) {

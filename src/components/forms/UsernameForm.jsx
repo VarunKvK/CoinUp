@@ -1,59 +1,69 @@
 "use client";
 
 import { useState } from "react";
-import ProfileSettings from "@/app/actions/ProfileSettings";
+import ProfileSettings from "@/actions/ProfileSettings";
 import toast from "react-hot-toast";
+import Submit from "../buttons/Submit";
+import SubmitNotifier from "../toasterComponents/SubmitNotifier";
+import ErrorNotifier from "../toasterComponents/ErrorNotifier";
 
 export default function UsernameForm({ username }) {
   const [focus, setFocus] = useState(false);
-  const [taken, settaken] = useState(false)
+  const [taken, settaken] = useState(false);
   function handleFocus() {
     setFocus(true);
   }
   function handleBlur() {
     setTimeout(() => {
-      if (!document.activeElement || document.activeElement.tagName !== "BUTTON") {
+      if (
+        !document.activeElement ||
+        document.activeElement.tagName !== "BUTTON"
+      ) {
         setFocus(false);
       }
     }, 0);
   }
-  function handleMouseDown(e) {
-    e.preventDefault();
-  }
 
-  async function handleUsername(formData){
-    const result= await ProfileSettings(formData)
-    settaken(result===false)
-    if(result){
-        toast.success("Saved the username")
+  async function handleUsername(formData) {
+    const result = await ProfileSettings(formData);
+    settaken(result === false);
+    if (result) {
+      toast.custom((t) => {
+        return <SubmitNotifier t={t} message={"Username updated successfully"} functionText={"Close"}/>;
+      });
+    }else{
+      toast.custom((t) => {
+        return < ErrorNotifier t={t} message={"Username already exists!"} functionText={"Close"}/>;
+      });
     }
   }
   return (
     <form action={handleUsername} className="flex items-center">
-      <div className={focus ? "grid -mt-5 ":"grid"}>
-        {
-            focus ? (<label htmlfor="username" className="text-gray-200 text-sm">
+      <div className={focus ? "grid -mt-5 " : "grid"}>  
+      {/* <div className="grid mt-5">   */}
+        {focus ? (
+          <label htmlfor="username" className="text-gray-200 text-sm">
             Change username
-          </label>):null
-        }
+          </label>
+        ) : null}
         <input
-        name="username"
+          name="username"
           id="username"
           placeholder="Username"
           onFocus={handleFocus}
           onBlur={handleBlur}
           type="text"
           defaultValue={username}
-          className="text-4xl text-black w-[18rem] outline-none border-b  border-black p-1"
+          className="text-4xl text-black w-[18rem] outline-none p-1 underline"
         />
-        {taken && (
-            <span className="mt-2 text-red-400 text-sm p-2 rounded-lg border border-red-400 bg-red-200">The username is taken</span>
-        )}
+        {/* <label htmlfor="username" className="text-gray-200 text-sm">
+            Change username
+          </label> */}
       </div>
       {focus && (
-        <button onMouseDown={handleMouseDown} type="submit" className="text-white ml-2 bg-black px-4 py-2 rounded-lg">
-          Save
-        </button>
+        <Submit>
+          <span>Save</span>
+        </Submit>
       )}
     </form>
   );

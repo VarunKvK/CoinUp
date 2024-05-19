@@ -9,7 +9,7 @@ try {
     email: String ,
     image: String ,
     email_verified: Date 
-  });
+  },{timestamp:true})
   User = model("User", UserSchema);
 }
 
