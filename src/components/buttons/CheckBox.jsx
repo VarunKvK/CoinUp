@@ -1,8 +1,8 @@
 "use client";
 
-export default function CheckBok({checked,index}) {
+export default function CheckBox({checked,index}) {
     function handleChange(index){
-        
+
     }
   return (
     <input

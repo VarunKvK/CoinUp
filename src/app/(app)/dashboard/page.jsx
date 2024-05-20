@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 import Todo from "@/models/todo";
 import toast from "react-hot-toast";
-import CheckBok from "@/components/buttons/CheckBox";
+import CheckBox from "@/components/buttons/CheckBox";
 
 export default async function Dashboard() {
   mongoose.connect(process.env.MONGODB_URI);
@@ -50,7 +50,7 @@ export default async function Dashboard() {
                       key={index}
                       className="p-2 border-b border-gray-200 flex items-center last:border-b-0"
                     >
-                      <CheckBok checked={t.completed} index={index}/>
+                      <CheckBox checked={t.completed} index={index}/>
                       {t.title}
                     </div>
                   ))}
