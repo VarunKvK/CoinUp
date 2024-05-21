@@ -11,20 +11,20 @@ body{
 }
 
 /* Goals Scroll */
-.scrollbar-thin::-webkit-scrollbar {
+.scrollbar-goal-thin::-webkit-scrollbar {
   width: 8px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-track {
+.scrollbar-goal-thin::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
+.scrollbar-goal-thin::-webkit-scrollbar-thumb {
   background: #000;
   border-radius: 4px;
 }
 
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+.scrollbar-goal-thin::-webkit-scrollbar-thumb:hover {
   background: #000;
 }
 

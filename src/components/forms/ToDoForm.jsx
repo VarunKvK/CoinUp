@@ -2,11 +2,11 @@
 import TodoList from "@/actions/ToDoList";
 import toast from "react-hot-toast";
 
-export default async function ToDoForm() {
+export default function ToDoForm() {
 
   async function handleSubmit(formData) {
     await TodoList(formData);
-    toast.success("Task Created")
+    toast.success("Task Created! Refresh the page ")
   }
   return (
       <form action={handleSubmit} className="grid grid-row-2 gap-4 mt-4 w-full">

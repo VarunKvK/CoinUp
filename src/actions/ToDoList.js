@@ -23,7 +23,10 @@ export default async function TodoList(formData) {
         owner: session?.user?.email,
         task: [tasks],
       });
+      const created="CREATED"
+      return created
     } else {
+      
       await Todo.findOneAndUpdate(
         { owner: session?.user?.email },
         {
@@ -33,6 +36,8 @@ export default async function TodoList(formData) {
         },
         { new: true, upsert: true }
       );
+      const updated="UPDATE"
+      return updated
     }
     return true;
   } catch (e) {

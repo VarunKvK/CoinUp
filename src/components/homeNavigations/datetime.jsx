@@ -22,7 +22,7 @@ export default function CurrentDate() {
 
   return (
     <div className="date-container">
-      <p className="text-gray-300 text-sm">{formattedDate}</p>
+      <p className="text-gray-300 text-xs md:text-sm">{formattedDate}</p>
     </div>
   );
 }

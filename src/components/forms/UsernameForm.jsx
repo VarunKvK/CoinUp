@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import Submit from "../buttons/Submit";
 import SubmitNotifier from "../toasterComponents/SubmitNotifier";
 import ErrorNotifier from "../toasterComponents/ErrorNotifier";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faPencil } from "@fortawesome/free-solid-svg-icons";
 
 export default function UsernameForm({ username }) {
   const [focus, setFocus] = useState(false);
@@ -39,13 +41,16 @@ export default function UsernameForm({ username }) {
   }
   return (
     <form action={handleUsername} className="flex items-center">
-      <div className={focus ? "grid -mt-5 " : "grid"}>  
-      {/* <div className="grid mt-5">   */}
+      <div className={focus ? "grid md:-mt-5 " : "relative grid items-center"}>  
         {focus ? (
-          <label htmlfor="username" className="text-gray-200 text-sm">
+          <label htmlfor="username" className="text-gray-200 md:text-sm text-xs hidden md:block">
             Change username
           </label>
         ) : null}
+        <button type="button" onClick={handleFocus} className={focus ? "hidden" :"md:hover:bg-gray-200 absolute md:-top-7  md:right-0 -right-6 p-2 rounded-full md:bg-gray-100 flex gap-1 items-center justify-center"}>
+          <span className="text-gray-500 text-xs md:block hidden">Edit Username</span>
+          <FontAwesomeIcon icon={faPencil} className="md:hover:text-gray-600 md:text-gray-500 text-black"/>
+        </button>
         <input
           name="username"
           id="username"
@@ -54,15 +59,13 @@ export default function UsernameForm({ username }) {
           onBlur={handleBlur}
           type="text"
           defaultValue={username}
-          className="text-4xl text-black w-[18rem] outline-none p-1 underline"
+          className="text-2xl md:text-4xl text-black w-[12rem] md:w-[18rem] outline-none p-1 underline"
         />
-        {/* <label htmlfor="username" className="text-gray-200 text-sm">
-            Change username
-          </label> */}
       </div>
       {focus && (
         <Submit>
-          <span>Save</span>
+          <FontAwesomeIcon icon={faCheck} className="text-white md:hidden block"/>
+          <span className="hidden md:block">Save</span>
         </Submit>
       )}
     </form>

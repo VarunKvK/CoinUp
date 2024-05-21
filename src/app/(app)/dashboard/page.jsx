@@ -9,6 +9,12 @@ import { getServerSession } from "next-auth";
 import Todo from "@/models/todo";
 import toast from "react-hot-toast";
 import CheckBox from "@/components/buttons/CheckBox";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DataInput from "@/components/formItems/DataInput";
+import UsernameComponent from "@/components/formItems/UsernameComponent";
+import TipsComponent from "@/components/formItems/TipsComponent";
+import TodoComponent from "@/components/formItems/TodoComponent";
 
 export default async function Dashboard() {
   mongoose.connect(process.env.MONGODB_URI);
@@ -16,54 +22,45 @@ export default async function Dashboard() {
   const profile = await Profile.findOne({ owner: session?.user.email });
   const username = profile?.uri;
   const tasks = await Todo.findOne({ owner: session?.user?.email });
-  
 
   return (
     <main>
       <div className="max-w-8xl p-6 h-[88vh]">
-        <div className="grid grid-cols-4 gap-8 w-full h-full">
-          <div className="grid rows-3 col-span-3 h-full">
-            <div className="">
-              <div className="">
-                <CurrentDate />
+        <div className="grid md:grid-cols-4 gap-8 w-full h-full">
+          <div className="grid grid-rows-6 gap-8 col-span-3 h-full">
+            <UsernameComponent username={username} />
+            <div className="grid grid-rows-2 md:grid-rows-3 gap-4 md:gap-8 row-span-5">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+                <DataInput className={" col-span-2 md:col-span-1"}>
+                  <h1 className="font-medium md:text-xl">Income</h1>
+                  <input
+                    type="text"
+                    className="text-2xl font-medium underline text-gray-500 outline-none w-[10rem]"
+                    placeholder="₹20,00,000"
+                  />
+                </DataInput>
+                <DataInput>
+                  <h1 className="font-medium md:text-xl">Expenditure</h1>
+                  <input
+                    type="text"
+                    className="text-2xl font-medium underline text-gray-500 outline-none w-[10rem]"
+                    placeholder="₹2000"
+                  />
+                </DataInput>
+                <DataInput>
+                  <h1 className="font-medium md:text-xl">Balance</h1>
+                  <p className="text-2xl font-medium">₹0</p>
+                </DataInput>
               </div>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-4xl flex text-gray-400">Hello</span>
-                  <UsernameForm username={username} />
-                </div>
-                <div className="grid">
-                  <Logout />
-                </div>
+              <div className="grid grid-rows-2 md:grid-cols-2 gap-4 md:gap-8 row-span-2">
+                <div className="bg-gray-400"></div>
+                <div className="bg-gray-400"></div>
               </div>
             </div>
           </div>
           <div className="grid grid-rows-3 gap-4 h-full">
-            <div className="p-4 row-span-2  border border-black rounded-xl">
-              <div className="p-2 ">
-                <h1 className="text-2xl mb-4">
-                  Weekly <span className="italic font-medium">Goals</span>
-                </h1>
-                <div className="max-h-48 overflow-y-auto rounded scrollbar-thin">
-                  {tasks.task.map((t, index) => (
-                    <div
-                      key={index}
-                      className="p-2 border-b border-gray-200 flex items-center last:border-b-0"
-                    >
-                      <CheckBox checked={t.completed} index={index}/>
-                      {t.title}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <ToDoForm />
-            </div>
-            <div className="bg-black p-6 rounded-lg">
-              <h1 className="text-white text-2xl">Tips for you</h1>
-              <div className="mt-2 grid grid-auto gap-4 max-h-[105px] overflow-y-auto rounded scrollbar-thin">
-                <li className="list-none text-white text-sm p-2 border-b border-gray-200 last:border-b-0">To change the username, just click on you username.</li>
-              </div>
-            </div>
+            <TodoComponent tasks={tasks}/>
+            <TipsComponent/>
           </div>
         </div>
       </div>
