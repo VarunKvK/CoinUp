@@ -5,8 +5,7 @@ try{
     Profile=model("Profile")
 }catch(e){
     const MoneySchema=new Schema({
-        income:{type:Number,default:0},
-        expenditure:{type:Number,default:0}
+        
     })
     const ProfileSchema=new Schema({
         uri:{type:String, required:true,min:1,unique:true},

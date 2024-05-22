@@ -63,7 +63,7 @@ export default function UsernameForm({ username }) {
         />
       </div>
       {focus && (
-        <Submit>
+        <Submit className="md:px-4 md:py-2">
           <FontAwesomeIcon icon={faCheck} className="text-white md:hidden block"/>
           <span className="hidden md:block">Save</span>
         </Submit>

@@ -22,9 +22,3 @@ export default async function ProfileSettings(formData){
     }
 
 }
-
-export async function IncomeData(formData){
-    const income=formData.get('income');
-    const expenditure=formData.get('expenditure')
-    console.log(`income: ${income}`)
-} 
