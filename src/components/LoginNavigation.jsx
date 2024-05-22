@@ -7,7 +7,7 @@ export default function LoginNav(){
     return(
         <>
         {path && path !== "/login" && (
-            <nav className="text-sm flex gap-12 items-center bg-black text-white rounded-xl px-6 py-2">
+            <nav className="text-sm flex gap-12 items-center bg-black text-white rounded-xl px-6 py-2 mr-4 md:mr-0">
               <Link href="/login">Login</Link>
             </nav>
           )}
