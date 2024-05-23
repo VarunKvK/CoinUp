@@ -23,9 +23,9 @@ export default function CheckBox({checked,index}) {
           throw new Error('Failed to update task');
         }
       }catch(e){
+        setChecked(checked);
         console.log(`Error in CheckBox.jsx ${e}`)
         throw(e)
-        setIsChecked(checked);
       }
 
     }

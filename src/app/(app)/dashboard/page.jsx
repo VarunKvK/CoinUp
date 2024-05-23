@@ -17,20 +17,20 @@ export default async function Dashboard() {
 
   return (
     <main>
-      <div className="max-w-8xl p-6 h-[88vh]">
-        <div className="grid md:grid-cols-4 gap-8 w-full h-full">
+      <div className="w-full mx-auto p-6 h-[88vh]">
+        <div className="grid lg:grid-cols-4 gap-8 w-full h-full">
           <div className="grid grid-rows-6 gap-8 col-span-3 h-full">
             <UsernameComponent username={username} />
-            <div className="grid grid-rows-2 md:grid-rows-3 gap-4 md:gap-8 row-span-5">
+            <div className="grid grid-rows-2 lg:grid-rows-3 gap-4 lg:gap-8 row-span-5">
               <IncomeDataForm/>
-              <div className="grid grid-rows-2 md:grid-cols-2 gap-4 md:gap-8 row-span-2">
+              <div className="grid grid-rows-2 lg:grid-cols-2 gap-4 lg:gap-8 row-span-2">
                 <div className="bg-gray-400"></div>
                 <div className="bg-gray-400"></div>
               </div>
             </div>
           </div>
-          <div className="grid grid-rows-3 gap-4 h-full">
-            <TodoComponent tasks={tasks} />
+          <div className="grid grid-rows-3 gap-4 col-span-3 lg:col-span-1  w-full h-full">
+            <TodoComponent tasks={tasks.task} />
             <TipsComponent />
           </div>
         </div>

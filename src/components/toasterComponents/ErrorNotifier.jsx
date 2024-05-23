@@ -1,7 +1,7 @@
 import React from 'react';
 import toast from "react-hot-toast";
 
-const ErrorNotifier=((t,message,functionText)=>{
+const ErrorNotifier=({t,message,functionText})=>{
     return(
         <div
       className='p-2 border border-red-400 rounded-lg bg-red-200 text-red-400 flex items-center'
@@ -15,6 +15,6 @@ const ErrorNotifier=((t,message,functionText)=>{
       </button>
     </div>
     )
-})
+}
 
 export default ErrorNotifier;

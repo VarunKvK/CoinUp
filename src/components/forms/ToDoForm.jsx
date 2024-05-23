@@ -1,10 +1,19 @@
 'use client'
 import TodoList from "@/actions/ToDoList";
 import toast from "react-hot-toast";
+import ErrorNotifier from "../toasterComponents/ErrorNotifier";
 
 export default function ToDoForm() {
 
   async function handleSubmit(formData) {
+    const task = formData.get("task");
+
+    if (!task) {
+      toast.custom((t) => {
+        return <ErrorNotifier t={t} message={"Task cannot be empty!"} functionText={"Close"}/>;
+      });
+      return
+    }
     await TodoList(formData);
     toast.success("Task Created! Refresh the page ")
   }

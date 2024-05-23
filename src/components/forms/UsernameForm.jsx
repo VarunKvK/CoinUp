@@ -27,6 +27,16 @@ export default function UsernameForm({ username }) {
   }
 
   async function handleUsername(formData) {
+
+    const username = formData.get("username");
+
+    if (!username) {
+      console.error("Username is empty!");
+      toast.custom((t) => {
+        return <ErrorNotifier t={t} message={"Username cannot be empty!"} functionText={"Close"}/>;
+      });
+      return
+    }
     const result = await ProfileSettings(formData);
     settaken(result === false);
     if (result) {

@@ -7,8 +7,6 @@ import mongoose from "mongoose";
 export default async function IncomeData(formData) {
   mongoose.connect(process.env.MONGODB_URI);
   const session = await getServerSession(authOptions);
-  const income = formData.get("income");
-  const expenditure = formData.get("expenditure");
 
   if (!session?.user?.email) {
     throw new Error("No user session found");
@@ -19,23 +17,34 @@ export default async function IncomeData(formData) {
   if (!profile) {
     throw new Error("Profile not found");
   }
-  const updateData = {};
 
-  if (income) {
-    updateData["moneydata.income"] = income;
-  }
+  const currentIncome = profile?.moneydata[0]?.income || 0;
+  const currentExpenditure = profile?.moneydata[0]?.expenditure || 0;
+  const income =
+    formData.get("income") !== null
+      ? parseFloat(formData.get("income"))
+      : currentIncome;
+  const expenditure =
+    formData.get("expenditure") !== null
+      ? parseFloat(formData.get("expenditure"))
+      : currentExpenditure;
+  const balance = income - expenditure;
 
-  if (expenditure) {
-    updateData["moneydata.expenditure"]= expenditure;
-  }
+  const updateData = {
+    "moneydata.income": income,
+    "moneydata.expenditure": expenditure,
+    "moneydata.balance": balance,
+  };
 
-  if (Object.keys(updateData).length > 0) {
+  if(updateData){
     await Profile.updateOne(
-      { owner: session?.user.email },
+      { owner: session?.user.email},
       {
         $set: updateData,
       }
     );
     return true;
+  }else{
+    return false;
   }
 }

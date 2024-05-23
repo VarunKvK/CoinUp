@@ -20,9 +20,9 @@ export default async function Header() {
           <>
             <Responsive />
             <nav className="hidden text-sm md:flex gap-12 items-center">
-              <Link href={"/transaction"}>Transactions</Link>
-              <Link href={"/budget"}>Budgets</Link>
-              <Link href={"/goal"}>Goals</Link>
+              <Link href={"/transactions"}>Transactions</Link>
+              <Link href={"/budgets"}>Budgets</Link>
+              <Link href={"/goals"}>Goals</Link>
               <Link
                 className="bg-black text-white rounded-xl px-6 py-2"
                 href={"/dashboard"}
