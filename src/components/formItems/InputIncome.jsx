@@ -34,9 +34,9 @@ export default function EditableInput({ id, name, placeholder, defaultvalue }) {
   }
 
   async function handleSubmit() {
-    const forlgata = new Forlgata();
-    forlgata.set(name, inputRef.current.value);
-    const result = await IncomeData(forlgata);
+    const formData = new FormData();
+    formData.set(name, inputRef.current.value);
+    const result = await IncomeData(formData);
     if (result) {
       toast.custom((t) => {
         return (
