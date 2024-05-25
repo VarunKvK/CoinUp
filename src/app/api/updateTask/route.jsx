@@ -2,7 +2,8 @@ import Todo from '@/models/todo';
 import mongoose from 'mongoose';
 
 export async function POST(req) {
-    try{const body = await req.json()
+    try{
+        const body = await req.json()
     const {index,completed}=body
 
     await mongoose.connect(process.env.MONGODB_URI)

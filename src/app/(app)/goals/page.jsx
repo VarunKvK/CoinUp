@@ -28,11 +28,11 @@ export default function GoalPage() {
     <div className="max-w-8xl mx-auto p-6">
       {!loading && (
       <>
-      <div className="text-4xl mb-8 font-medium">Your Goals</div>
       <div className="mb-4 p-4 border border-black rounded-lg">
         <h2 className="text-lg ">Add new task</h2>
       <ToDoForm />
       </div>
+      <div className="text-xl mb-2 mt-6 font-medium">Your Goals</div>
       </>
       )}
       {loading && (
@@ -40,7 +40,7 @@ export default function GoalPage() {
           Loading...
         </div>
       )}
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 3, 900: 4 }}>
         <Masonry columnsCount={3} gutter="2rem">
           {!loading &&
             Object.keys(groupData).map((date) => {
@@ -53,7 +53,7 @@ export default function GoalPage() {
                         return (
                           <div className="flex items-center justify-between">
                             <div className="flex items-center">
-                              <CheckBox checked={data.completed} />
+                              <CheckBox checked={data.completed} index={data._id}/>
                               <li>{data.title}</li>
                             </div>
                             {data.completed === true && (

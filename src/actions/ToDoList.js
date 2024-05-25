@@ -39,7 +39,6 @@ export default async function TodoList(formData) {
       const updated="UPDATE"
       return updated
     }
-    return true;
   } catch (e) {
     console.log(e);
   }
