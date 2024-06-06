@@ -1,6 +1,6 @@
 import { useFormStatus } from "react-dom";
 
-export default function Submit({ children, className= " " }) {
+export default function Submit({children, className= " ",process }) {
   const { pending } = useFormStatus();
   function handleMouseDown(e) {
     e.preventDefault();
@@ -12,11 +12,11 @@ export default function Submit({ children, className= " " }) {
       disabled={pending}
       type="submit"
       className={
-        "disabled:bg-gray-600 disabled:text-gray-200 text-white ml-1 md:ml-2 bg-black px-2 py-1 rounded-lg" +
+        "disabled:bg-gray-600 disabled:text-gray-200 text-white bg-black px-2 py-1 rounded-lg " +
         className
       }
     >
-      {pending && <span>Saving</span>}
+      {pending && <span>{process}</span>}
       {!pending && children}
     </button>
   );

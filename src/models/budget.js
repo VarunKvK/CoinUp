@@ -11,7 +11,7 @@ const BudgetSchema = new Schema({
   owner: { type: String, required: true },
   budget:[ 
     {title: { type: String, required: true },
-    entries: { type: [Budgetdetails] },}
+    entries: [{type: Budgetdetails}],}
 ]
 });
 

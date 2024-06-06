@@ -27,7 +27,7 @@ export default function ToDoForm() {
         />
         <button
           type="submit"
-          className="bg-black rounded-lg  text-white px-4 py-2 rounded-lg"
+          className="bg-black rounded-lg  text-white px-4 py-2"
         >
           Add
         </button>

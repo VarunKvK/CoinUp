@@ -57,7 +57,7 @@ export default function GoalPage() {
                               <li>{data.title}</li>
                             </div>
                             {data.completed === true && (
-                              <span className="text-gray-300 font-semibold">
+                              <span className="text-gray-300 font-medium md:text-xs ">
                                 Completed
                               </span>
                             )}

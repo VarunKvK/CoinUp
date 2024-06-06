@@ -75,3 +75,11 @@ body{
   background-color: white;
   border-radius: 2px;
 }
+
+input#modalCheck:checked ~ .backdrop{
+  display: flex;
+}
+
+input#modalCheck:checked ~ .modal{
+  display: flex;
+}

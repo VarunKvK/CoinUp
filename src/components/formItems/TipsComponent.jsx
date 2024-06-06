@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function TipsComponent() {
   return (
-    <div className="bg-black p-6 rounded-lg">
+    <div className="bg-black p-6 rounded-lg row-span-2">
       <h1 className="text-white text-2xl">Tips for you</h1>
       <div className="mt-2 grid grid-auto gap-2 max-h-[105px] overflow-y-auto rounded scrollbar-thin">
         <li className="list-none text-white text-sm p-1 border-b border-gray-200 last:border-b-0 ">

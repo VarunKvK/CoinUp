@@ -7,28 +7,28 @@ export default function Home() {
       className: "bg-black text-white",
       title: "Insert Your Transaction",
       subtitle: "Quickly record new expenses or income",
-      link: "/transaction",
+      link: "/transactions",
     },
     {
       id: 2,
       className: "border border-black text-black",
       title: "Create Your Budget",
       subtitle: "Set spending limits for different categories",
-      link: "/budget",
+      link: "/budgets",
     },
     {
       id: 3,
       className: "bg-black text-white",
       title: "Set Your Goal",
       subtitle: "Plan and track financial objectives",
-      link: "/goal",
+      link: "/goals",
     },
     {
       id: 4,
       className: "border border-black text-black",
       title: "Generate Your Report",
       subtitle: "View insights and analytics on your finances",
-      link: "/report",
+      link: "/reports",
     },
   ];
   return (
