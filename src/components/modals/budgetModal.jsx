@@ -1,9 +1,12 @@
 "use client";
-import { faAdd, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faIndianRupeeSign, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import Submit from "../buttons/Submit";
-import toast from "react-hot-toast";
+
+
+//?Summation of the budgets 
+//?Summation of the budgets 
+//?Summation of the budgets 
 
 export const BudgetModal = ({ budgets }) => {
   const [budgetInfo, setBudgetInfo] = useState([]);
@@ -27,22 +30,25 @@ export const BudgetModal = ({ budgets }) => {
     setBudgetCost("");
   }
 
-  function removeBudgetInfo(name){
-    setBudgetInfo(budgetInfo.filter((budget) => budget.name!== name))
+  function removeBudgetInfo(name) {
+    setBudgetInfo(budgetInfo.filter((budget) => budget.name !== name));
   }
 
-  async function handleSubmit(){
-    const response=await fetch("/api/addbudgetInfo",{
+  async function handleSubmit() {
+    await fetch("/api/addbudgetInfo", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id:budgets,
-        budgetDetails:budgetInfo
-      })
+        id: budgets,
+        budgetDetails: budgetInfo,
+      }),
     })
-    setLoading(false)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+    setLoading(false);
   }
   return (
     <div className="bg-white rounded-lg p-4">
@@ -92,19 +98,33 @@ export const BudgetModal = ({ budgets }) => {
         </div>
         {budgetInfo.length > 0 && (
           <div className="p-4 grid overflow-y-auto max-h-30 gap-2 pb-4 border border-black rounded-lg">
-            {budgetInfo?.map((info,index) => {
+            {budgetInfo?.map((info, index) => {
               return (
-                <div key={index} className="flex items-center justify-between w-full border-b pb-2 last:border-b-0">
+                <div
+                  key={index}
+                  className="flex items-center justify-between w-full border-b pb-2 last:border-b-0"
+                >
                   <p className="font-semibold capitalize">{info.name}</p>
-                  <p className="font-medium">₹{info.cost}</p>
-                  <FontAwesomeIcon className="cursor-pointer" icon={faTrash} onClick={()=>removeBudgetInfo(info.name)}/>
+                  <p className="font-medium flex items-center gap-1">
+                    <FontAwesomeIcon icon={faIndianRupeeSign}/>
+                    <span>{info.cost}</span>
+                    </p>
+                  <FontAwesomeIcon
+                    className="cursor-pointer"
+                    icon={faTrash}
+                    onClick={() => removeBudgetInfo(info.name)}
+                  />
                 </div>
               );
             })}
           </div>
         )}
-        <button type="submit" onClick={handleSubmit} className="text-white bg-black px-2 py-1 rounded-lg  w-full p-2 mt-6 md:py-2 ">
-          {loading ? <span>Create</span>:<span>Creating</span>}
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="text-white bg-black px-2 py-1 rounded-lg  w-full p-2 mt-6 md:py-2 "
+        >
+          {loading ? <span>Create</span> : <span>Creating</span>}
         </button>
       </form>
     </div>

@@ -40,7 +40,7 @@ export default function GoalPage() {
           Loading...
         </div>
       )}
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 3, 900: 4 }}>
+      <ResponsiveMasonry columnsCountBreakPoints={{  350: 1, 750: 2, 900: 3, 1280: 4  }}>
         <Masonry columnsCount={3} gutter="2rem">
           {!loading &&
             Object.keys(groupData).map((date) => {

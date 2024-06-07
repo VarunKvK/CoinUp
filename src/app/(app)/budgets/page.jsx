@@ -5,6 +5,7 @@ import { BudgetModal } from "@/components/modals/budgetModal";
 import {
   faAdd,
   faCheck,
+  faClock,
   faClose,
   faDumpster,
   faGhost,
@@ -17,28 +18,35 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-
-//!Need to fix the JSON input 
-//!Need to fix the JSON input 
-//!Need to fix the JSON input 
-
 export default function BudgetsPage() {
   const [budgets, setBudgets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState(null);
+  const [totalSummation, setSummation] = useState([]);
   useEffect(() => {
     const fetchBudgets = async () => {
       const response = await fetch("/api/budget");
       const data = await response.json();
       const newBudget = data.budgets;
-      console.log(newBudget);
       setBudgets(newBudget);
       setLoading(false);
     };
 
     fetchBudgets();
+
+    const fetchSummation = async () => {
+      const result = await fetch("/api/addbudgetInfo");
+      const data = await result.json();
+      const { totalAmount } = data;
+      setSummation(totalAmount);
+    };
+    fetchSummation();
   }, []);
 
+  function getSummationId(id) {
+    const budgetTotal = totalSummation.find((total) => total.budgetId === id);
+    return budgetTotal ? budgetTotal.totalAmount : 0;
+  }
   async function removeBudget(budgetid) {
     const response = await fetch("/api/deleteBudget", {
       method: "POST",
@@ -52,7 +60,7 @@ export default function BudgetsPage() {
     if (!response.ok) {
       throw new Error("Task failed to fetch");
     }
-    const data = await response.json();
+    await response.json();
     setBudgets((prevBudgets) =>
       prevBudgets.map((budget) => ({
         ...budget,
@@ -75,7 +83,7 @@ export default function BudgetsPage() {
               htmlFor="modalCheck"
               className="backdrop fixed inset-0 bg-black/90 z-10 justify-center items-center hidden"
             ></label>
-            <div className="modal hidden fixed z-20">
+            <div className="modal hidden fixed z-20 p-6 md:p-0">
               <BudgetModal budgets={id} />
             </div>
           </div>
@@ -86,7 +94,7 @@ export default function BudgetsPage() {
                 key={index}
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1280: 4 }}
               >
-                <Masonry columnsCount={3} gutter="2rem">
+                <Masonry columnsCount={3} gutter="1.5rem">
                   {budget.budget &&
                     budget.budget.map((b) => (
                       <div className="flex flex-col" key={b._id}>
@@ -104,7 +112,7 @@ export default function BudgetsPage() {
                               </label>
                               <button
                                 onClick={() => removeBudget(b._id)}
-                                className="transition-all hover:bg-white hover:text-black cursor-pointer border border-white/40 text-white/40 py-3 px-4 rounded-lg gap-1 flex items-center"
+                                className="transition-all md:hover:bg-white md:hover:text-black cursor-pointer border border-white md:border-white/40 text-white md:text-white/40 py-2 px-4 rounded-lg gap-1 flex items-center"
                               >
                                 <FontAwesomeIcon icon={faTrash} />
                               </button>
@@ -114,23 +122,54 @@ export default function BudgetsPage() {
                         {b?.entries && b?.entries.length > 0 && (
                           <div className="bg-black text-white p-4 rounded-lg flex flex-col">
                             <div className="flex items-center w-full justify-between px-2.5">
-                              <p className="font-semibold text-white/50">Name</p>
-                              <p className="font-semibold text-white/50">Amount</p>
+                              <p className="font-semibold text-white/50">
+                                Name
+                              </p>
+                              <p className="font-semibold text-white/50">
+                                Amount
+                              </p>
                             </div>
                             <div className="border border-white overflow-y-auto max-h-30 rounded-lg p-2.5 mt-2 flex flex-col gap-2">
                               {b.entries.map((details, index) => (
-                                <div key={index} className="flex items-center w-full justify-between">
+                                <div
+                                  key={index}
+                                  className="flex items-center w-full justify-between"
+                                >
                                   <p className="capitalize flex items-center gap-1">
-                                  <FontAwesomeIcon icon={faGhost} className="text-white/70"/>
-                                  <span>{details.title}</span>
-                                    </p>
-                                  {/* <p className="">₹{details.amount}</p> */}
+                                    <FontAwesomeIcon
+                                      icon={faGhost}
+                                      className="text-white/70"
+                                    />
+                                    <span>{details.title}</span>
+                                  </p>
                                   <p className="flex items-center gap-1">
-                                    <FontAwesomeIcon icon={faIndianRupeeSign} className="text-white/70"/>
+                                    <FontAwesomeIcon
+                                      icon={faIndianRupeeSign}
+                                      className="text-white/70"
+                                    />
                                     <span>{details.amount}</span>
-                                    </p>
+                                  </p>
                                 </div>
                               ))}
+                              <div className="flex items-center justify-between border-t border-white/40 mt-2 px-1 py-2">
+                                <span className="font-semibold text-white/70">
+                                  Total
+                                </span>
+                                <span className="font-semibold flex items-center gap-1">
+                                  <FontAwesomeIcon
+                                    className="text-white/70"
+                                    icon={faIndianRupeeSign}
+                                  />
+                                  {getSummationId(b._id)}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center justify-between text-white/20 mt-2 pt-2">
+                              <div className="flex items-center gap-1">
+                                <FontAwesomeIcon icon={faClock} />
+                                <span className="">Created</span>
+                              </div>
+                              <span>{b.date.split("T")[0]}</span>
                             </div>
                           </div>
                         )}

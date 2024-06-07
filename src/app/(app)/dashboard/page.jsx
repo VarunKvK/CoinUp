@@ -29,7 +29,7 @@ export default async function Dashboard() {
               </div>
             </div>
           </div>
-          <div className="grid grid-rows-2 gap-4 col-span-3 lg:col-span-1 w-full h-full">
+          <div className="pb-6 grid grid-rows-2 gap-4 col-span-3 lg:col-span-1 w-full h-full">
             <TodoComponent tasks={tasks.task} />
             <TipsComponent />
           </div>
