@@ -86,7 +86,7 @@ export default function EditableInput({ id, name, placeholder, defaultvalue }) {
         />
       </div>
       {focus ? (
-        <Submit className="bg-black text-white lg:px-2 rounded-lg">
+        <Submit process={'Saving..'} className="bg-black text-white lg:px-2 rounded-lg">
           <FontAwesomeIcon icon={faCheck} />
         </Submit>
       ) : (

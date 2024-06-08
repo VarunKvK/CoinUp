@@ -4,7 +4,7 @@ import CurrentDate from "../homeNavigations/datetime";
 
 export default function UsernameComponent({username}){
     return(
-        <div className="">
+        <div className="h-[20%]">
               <div className="">
                 <CurrentDate />
               </div>

@@ -12,8 +12,8 @@ export default async function IncomeDataForm() {
   const incomeData = await Profile.findOne({ owner: session?.user.email });
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-      <DataInput className=" col-span-2 lg:col-span-1">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <DataInput className="col-span-2 lg:col-span-1">
         <label htmlFor="income" className="text-gray-500 font-medium lg:text-xl">
           Income
         </label>
@@ -39,7 +39,7 @@ export default async function IncomeDataForm() {
         <label className="font-medium lg:text-xl text-gray-500">Balance</label>
         <div className="flex items-center gap-1 font-medium lg:font-regular">
           <span className="text-2xl">₹</span>
-          <p className="text-2xl lg:text-3xl">{incomeData?.moneydata[0]?.balance}</p>
+          <p className="text-2xl lg:text-3xl">{incomeData?.moneydata[0]?.balance || 0}</p>
         </div>
       </DataInput>
     </div>

@@ -31,9 +31,9 @@ export default async function IncomeData(formData) {
   const balance = income - expenditure;
 
   const updateData = {
-    "moneydata.income": income,
-    "moneydata.expenditure": expenditure,
-    "moneydata.balance": balance,
+    "moneydata.0.income": income,
+    "moneydata.0.expenditure": expenditure,
+    "moneydata.0.balance": balance,
   };
 
   if(updateData){

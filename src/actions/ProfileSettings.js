@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 
 export default async function ProfileSettings(formData){
     const username=formData.get('username');
-
+    console.log(username);
     try{
         await mongoose.connect(process.env.MONGODB_URI)
         const existingUsername=await Profile.findOne({uri:username})

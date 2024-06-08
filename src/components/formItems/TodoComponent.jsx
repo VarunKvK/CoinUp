@@ -4,7 +4,7 @@ import ToDoForm from "../forms/ToDoForm";
 export default function TodoComponent({tasks}) {
   // console.log(tasks);
   return (
-    <div className="p-4 row-span-2 lg:row-span-0 border border-black rounded-xl">
+    <div className="p-4 row-span-2 lg:row-span-3 border border-black rounded-xl">
       <div className="p-2 ">
         <h1 className="text-2xl mb-4">
           Weekly <span className="italic font-medium">Goals</span>

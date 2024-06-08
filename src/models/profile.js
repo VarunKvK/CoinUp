@@ -8,6 +8,7 @@ try{
         income: {type:Number ,default:0},
         expenditure: {type:Number ,default:0},
         balance: {type:Number ,default:0},
+        date: { type: Date, required: true, default: Date.now },
     })
     const ProfileSchema=new Schema({
         uri:{type:String, required:true,min:1,unique:true},

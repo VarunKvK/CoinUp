@@ -24,6 +24,7 @@
     "react-hot-toast": "^2.4.1",
     "react-responsive-masonry": "^2.2.0",
     "react-toastify": "^10.0.5",
+    "recharts": "^2.12.7",
     "swr": "^2.2.5"
   },
   "devDependencies": {
