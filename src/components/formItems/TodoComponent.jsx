@@ -9,7 +9,7 @@ export default function TodoComponent({tasks}) {
         <h1 className="text-2xl mb-4">
           Weekly <span className="italic font-medium">Goals</span>
         </h1>
-        <div className="max-h-48 overflow-y-auto rounded scrollbar-goal-thin">
+        <div className="lg:max-h-48 max-h-[16rem] overflow-y-auto rounded scrollbar-goal-thin">
           {tasks?.map((t) => (
             <div
               key={t._id}

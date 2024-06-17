@@ -88,14 +88,14 @@ export default function BudgetsPage() {
             </div>
           </div>
           {/* //?Modal For Adding Budgets */}
-          {budgets && budgets.length > 0 ? (
+          {budgets ? (
             budgets.map((budget, index) => (
               <ResponsiveMasonry
                 key={index}
                 columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3, 1280: 4 }}
               >
                 <Masonry columnsCount={3} gutter="1.5rem">
-                  {budget.budget &&
+                  {budget.budget && budget.budget?.length > 0 ? (
                     budget.budget.map((b) => (
                       <div className="flex flex-col" key={b._id}>
                         <div className="bg-black text-white p-4 rounded-lg">
@@ -174,7 +174,10 @@ export default function BudgetsPage() {
                           </div>
                         )}
                       </div>
-                    ))}
+                    ))
+                  ) : (
+                    <div className="w-full flex items-center justify-center text-gray-300">No budgets available ...</div>
+                  )}
                 </Masonry>
               </ResponsiveMasonry>
             ))

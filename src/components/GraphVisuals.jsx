@@ -44,7 +44,6 @@ const generateMonthlyData = (rawData) => {
 
 export default function GraphVisuals() {
   const [data, setData] = useState([]);
-
   useEffect(() => {
     const fetchGraph = async () => {
       try {

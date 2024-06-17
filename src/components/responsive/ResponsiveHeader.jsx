@@ -38,7 +38,6 @@ export default function Responsive(){
         <button onClick={handleClick} className="mr-4 w-[1.5rem] block md:hidden cursor-pointer">{active ? (<FontAwesomeIcon className="text-2xl" icon={faCircleXmark}/>):(<FontAwesomeIcon className="text-2xl" icon={faEllipsis}/>)}</button>
         {active &&
         <nav ref={navRef} className="md:hidden bg-black px-6 py-4 w-full top-14 absolute text-sm flex gap-8 items-center justify-between">
-              <Link className="text-white" href={"/transactions"}>Transactions</Link>
               <Link className="text-white" href={"/budgets"}>Budgets</Link>
               <Link className="text-white" href={"/goals"}>Goals</Link>
               <Link

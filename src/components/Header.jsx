@@ -20,7 +20,6 @@ export default async function Header() {
           <>
             <Responsive />
             <nav className="hidden text-sm md:flex gap-12 items-center">
-              <Link href={"/transactions"}>Transactions</Link>
               <Link href={"/budgets"}>Budgets</Link>
               <Link href={"/goals"}>Goals</Link>
               <Link

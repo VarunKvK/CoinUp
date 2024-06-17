@@ -96,7 +96,7 @@ export default function EditableInput({ id, name, placeholder, defaultvalue }) {
           className="flex items-center gap-1 border border-black px-2 py-1 text-black rounded-lg"
         >
           <FontAwesomeIcon icon={faPencil} />
-          <span className="hidden lg:block">Edit</span>
+          <span className="hidden xl:block">Edit</span>
         </button>
       )}
     </form>

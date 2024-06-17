@@ -2,13 +2,13 @@ import ButtonNav from "../../components/homeNavigations/navigation";
 
 export default function Home() {
   const linkInfo = [
-    {
-      id: 1,
-      className: "bg-black text-white",
-      title: "Insert Your Transaction",
-      subtitle: "Quickly record new expenses or income",
-      link: "/transactions",
-    },
+    // {
+    //   id: 1,
+    //   className: "bg-black text-white",
+    //   title: "Insert Your Transaction",
+    //   subtitle: "Quickly record new expenses or income",
+    //   link: "/transactions",
+    // },
     {
       id: 2,
       className: "border border-black text-black",
@@ -44,7 +44,7 @@ export default function Home() {
         </div>
       </div>
       {/* The button navigation group after Logging-In*/}
-      <div className="h-[50vh] grid grid-rows-2 grid-cols-2 md:flex gap-4">
+      <div className="h-[50vh] grid grid-rows-2 grid-cols-2 lg:flex gap-4">
         {linkInfo.map((info) => {
           return (
             <ButtonNav
