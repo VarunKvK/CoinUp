@@ -46,8 +46,8 @@ export default function GoalPage() {
         <Masonry columnsCount={3} gutter="2rem">
           {!loading &&
             (Object.keys(groupData).length > 0 ? (
-              Object.keys(groupData).map((date) => (
-                <div key={date} className="p-8 border border-black rounded-lg">
+              Object.keys(groupData).map((date,index) => (
+                <div key={index} className="p-8 border border-black rounded-lg">
                   <h1 className="text-3xl text-gray-500 font-medium">{date}</h1>
                   <div className="mt-4">
                     <ul className="max-h-48 overflow-y-auto rounded scrollbar-goal-thin">
