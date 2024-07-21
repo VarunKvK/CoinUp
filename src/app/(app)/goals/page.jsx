@@ -7,6 +7,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 export default function GoalPage() {
   const [groupData, setGroupData] = useState({});
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchTask = async () => {
       const result = await fetch("/api/todos", {
@@ -24,12 +25,13 @@ export default function GoalPage() {
     };
     fetchTask();
   }, []);
+
   return (
     <div className="max-w-8xl mx-auto p-6">
       {!loading && (
         <>
           <div className="mb-4 p-4 border border-black rounded-lg">
-            <h2 className="text-lg ">Add new task</h2>
+            <h2 className="text-lg">Add new task</h2>
             <ToDoForm />
           </div>
           <div className="text-xl mb-2 mt-6 font-medium">Your Goals</div>
@@ -46,14 +48,14 @@ export default function GoalPage() {
         <Masonry columnsCount={3} gutter="2rem">
           {!loading &&
             (Object.keys(groupData).length > 0 ? (
-              Object.keys(groupData).map((date,index) => (
-                <div key={date} className="p-8 border border-black rounded-lg">
+              Object.keys(groupData).map((date, index) => (
+                <div key={index} className="p-8 border border-black rounded-lg">
                   <h1 className="text-3xl text-gray-500 font-medium">{date}</h1>
                   <div className="mt-4">
                     <ul className="max-h-48 overflow-y-auto rounded scrollbar-goal-thin">
                       {groupData[date].map((data) => (
                         <div
-                          key={data._id}
+                          key={data._id} // Use a unique identifier here
                           className="flex items-center justify-between"
                         >
                           <div className="flex items-center">
