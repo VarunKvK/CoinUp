@@ -48,14 +48,14 @@ export default function GoalPage() {
         <Masonry columnsCount={3} gutter="2rem">
           {!loading &&
             (Object.keys(groupData).length > 0 ? (
-              Object.keys(groupData).map((date, index) => (
-                <div key={index} className="p-8 border border-black rounded-lg">
+              Object.keys(groupData).map((date) => (
+                <div key={date} className="p-8 border border-black rounded-lg">
                   <h1 className="text-3xl text-gray-500 font-medium">{date}</h1>
                   <div className="mt-4">
                     <ul className="max-h-48 overflow-y-auto rounded scrollbar-goal-thin">
                       {groupData[date].map((data) => (
                         <div
-                          key={data._id} // Use a unique identifier here
+                          key={data._id}
                           className="flex items-center justify-between"
                         >
                           <div className="flex items-center">
@@ -63,7 +63,7 @@ export default function GoalPage() {
                               checked={data.completed}
                               index={data._id}
                             />
-                            <li>{data.title}</li>
+                            <li key={data._id}>{data.title}</li> {/* Add key here */}
                           </div>
                           {data.completed === true && (
                             <span className="text-gray-300 font-medium md:text-xs">
